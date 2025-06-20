@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Crônicas Estelares</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- META TAGS PARA SEO E REDES SOCIAIS -->
+    <meta name="description" content="Ferramentas gratuitas para criadores de conteúdo e canais dark. Automatize seu fluxo de trabalho e eleve a qualidade dos seus vídeos.">
+    <meta name="keywords" content="ferramentas para criadores, canais dark, divisor de texto, gerador de legendas, edição de vídeo, conteúdo, youtube, narração ia, tts">
+    <meta name="author" content="Crônicas Estelares">
+
+    <!-- OPEN GRAPH (PARA PARTILHA EM REDES SOCIAIS) -->
+    <meta property="og:title" content="Portal Crônicas Estelares">
+    <meta property="og:description" content="Ferramentas gratuitas para criadores de conteúdo e canais dark. Automatize seu fluxo de trabalho e eleve a qualidade dos seus vídeos.">
+    <meta property="og:image" content="https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <meta property="og:url" content="https://seu-portal.vercel.app"> <!-- SUBSTITUA PELO SEU LINK REAL -->
+    <meta property="og:type" content="website">
+
+    <!-- Importando a fonte temática do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---- VARIÁVEIS DE TEMA ---- */
+        :root {
+            /* Tema Escuro (Padrão) */
+            --color-bg: #0a0f18;
+            --color-text: #e0e0e0;
+            --color-primary: #00f2fe;
+            --color-card-bg: #101a2d;
+            --color-card-border: #223354;
+            --color-shadow: rgba(0, 242, 254, 0.2);
+            --font-main: 'Exo 2', sans-serif;
+        }
+
+        body.light-theme {
+            /* Tema Claro */
+            --color-bg: #f4f7f9;
+            --color-text: #333333;
+            --color-primary: #005fbd; /* Cor primária para o tema claro */
+            --color-card-bg: #ffffff;
+            --color-card-border: #d1d9e0;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ---- ESTILOS GERAIS E RESET ---- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* ---- BOTÕES FLUTUANTES ---- */
+        .theme-switcher, .back-to-top {
+            position: fixed;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 50%;
+            width: 40px; 
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .theme-switcher:hover, .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px var(--color-shadow);
+        }
+        
+        .theme-switcher {
+            top: 20px;
+        }
+
+        .back-to-top {
+            bottom: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-switcher svg, .back-to-top svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-primary);
+        }
+        .light-theme #theme-icon-dark,
+        body:not(.light-theme) #theme-icon-light {
+            display: none;
+        }
+
+        /* ---- BANNER PRINCIPAL (ESTILO FIXO) ---- */
+        .banner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 60vh;
+            min-height: 400px;
+            padding: 2rem;
+            background-image: linear-gradient(rgba(10, 15, 24, 0.7), rgba(10, 15, 24, 0.9)), url('https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-bottom: 2px solid #00f2fe;
+        }
+
+        .banner-content h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .banner-content p {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            max-width: 600px;
+        }
+
+        /* ---- SEÇÃO DE PROJETOS ---- */
+        main {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        
+        main h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .grid-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* ---- ESTILO DOS CARDS ---- */
+        .card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .light-theme .card {
+            box-shadow: 0 5px 15px var(--color-shadow);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 25px var(--color-shadow);
+        }
+        
+        .card.is-visible:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+        
+        .card:hover img { opacity: 1; }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .card-content h3 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .card-content p {
+            font-size: 1rem;
+            flex-grow: 1;
+            color: var(--color-text);
+        }
+
+        .card.disabled {
+            opacity: 0.5;
+            filter: grayscale(80%);
+            cursor: not-allowed;
+        }
+        .card.disabled:hover {
+            transform: none;
+            border-color: var(--color-card-border);
+            box-shadow: none;
+        }
+
+        /* ---- RODAPÉ ---- */
+        footer {
+            margin-top: 2rem;
+            border-top: 1px solid var(--color-card-border);
+            color: #888;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link, .donation-link, .email-link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .footer-link:hover, .donation-link:hover, .email-link:hover {
+            color: var(--color-primary);
+            text-shadow: 0 0 8px var(--color-shadow);
+        }
+        .footer-link:hover span, .donation-link:hover span, .email-link:hover span {
+             text-decoration: underline;
+        }
+        .youtube-icon {
+            width: 28px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        
+        .donation-link svg, .email-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-primary);
+            transition: fill 0.3s;
+        }
+
+        .copyright-text {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* ---- RESPONSIVIDADE ---- */
+        @media (max-width: 768px) {
+            .banner-content h1 { font-size: 2.8rem; }
+            .banner-content p { font-size: 1.1rem; }
+            main h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body id="top">
+    
+    <!-- BOTÃO PARA TROCAR O TEMA -->
+    <div id="theme-toggle" class="theme-switcher" title="Alterar tema">
+        <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13.14C20.97,13.14 20.3,13.42 19.82,13.9C19.34,14.38 19.06,15.05 19.06,15.72C19.06,16.39 19.34,17.06 19.82,17.54C20.3,18.02 20.97,18.3 21.64,18.3C22.31,18.3 22.98,18.02 23.46,17.54C23.94,17.06 24.22,16.39 24.22,15.72C24.22,15.05 23.94,14.38 23.46,13.9C22.98,13.42 22.31,13.14 21.64,13.14Z M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22C15.93,22 19.33,19.79 20.94,16.63C17.9,17.56 14.62,16.4 12.5,13.82C10.38,11.24 10.45,7.87 12.68,5.3C11.39,4.28 9.81,3.75 8.12,4.05C5.91,4.5 4.05,6.17 3.34,8.36C2.63,10.55 3.19,12.94 4.83,14.57C6.47,16.21 8.85,16.78 11.05,16.07C11.33,16 11.62,15.95 11.9,15.9C11.53,15.33 11.25,14.68 11.09,14C10.23,10.82 11.7,7.5 14.5,5.8C15.45,5.23 16.5,4.96 17.55,5C17.84,2.92 15.15,2 12,2Z"/></svg>
+        <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5V2.5H11V4.5H12M18.6,6.5L19.8,5.3L18.4,3.9L17.2,5.1L18.6,6.5M20.5,11H22.5V12H20.5V11M17.2,18.9L18.4,20.1L19.8,18.7L18.6,17.5L17.2,18.9M12,20.5V22.5H13V20.5H12M5.4,17.5L4.2,18.7L2.8,17.3L4,16.1L5.4,17.5M3.5,12H1.5V11H3.5V12M6.8,5.1L5.6,3.9L4.2,5.3L5.4,6.5L6.8,5.1Z"/></svg>
+    </div>
+
+    <!-- O BANNER PRINCIPAL COM O TÍTULO -->
+    <header class="banner">
+        <div class="banner-content">
+            <h1>Crônicas Estelares</h1>
+            <p>Ferramentas gratuitas para impulsionar sua criação de conteúdo.</p>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL COM OS CARDS -->
+    <main class="container" id="projetos">
+        <h2>Arsenal de Ferramentas</h2>
+        <div class="grid-apps">
+            
+            <a href="https://divisordetexto.vercel.app" target="_blank" rel="noopener noreferrer" class="card">
+                <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/divisordetexto.png" alt="Imagem do aplicativo Divisor de Texto">
+                <div class="card-content">
+                    <h3>Divisor de Texto</h3>
+                    <p>Divida textos longos em blocos menores. Ideal para preparar roteiros para ferramentas de narração com Inteligência Artificial (TTS).</p>
+                </div>
+            </a>
+            
+            <a href="#" target="_blank" rel="noopener noreferrer" class="card">
+                <img src="https://placehold.co/600x400/1a2b4a/00f2fe?text=Gerador+de+Legendas" alt="Ícone representando legendas de vídeo">
+                <div class="card-content">
+                    <h3>Gerador de Legendas</h3>
+                    <p>Converta áudio ou texto simples em legendas formatadas (SRT) para seus vídeos.</p>
+                </div>
+            </a>
+
+            <div class="card disabled">
+                <img src="https://placehold.co/600x400/101a2d/666?text=Em+Desenvolvimento" alt="Ícone de ferramenta em construção">
+                <div class="card-content">
+                    <h3>Analisador de Hashtags</h3>
+                    <p>Em breve: uma ferramenta para encontrar as melhores hashtags para o seu nicho.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container footer-wrapper">
+            <div class="footer-links">
+                <a href="https://www.youtube.com/@CronicasEstelaress" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <svg class="youtube-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" aria-hidden="true">
+                        <rect width="28" height="20" rx="4" fill="#FF0000"/>
+                        <path d="M11,14 L18,10 L11,6 V14 Z" fill="#FFFFFF"/>
+                    </svg>
+                    <span>Acesse nosso canal no YouTube</span>
+                </a>
+                
+                <a href="#" target="_blank" rel="noopener noreferrer" class="donation-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <span>Apoie este projeto</span>
+                </a>
+
+                <a href="mailto:cronicasestelares.oficial@gmail.com" target="_blank" rel="noopener noreferrer" class="email-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>cronicasestelares.oficial@gmail.com</span>
+                </a>
+            </div>
+            
+            <p class="copyright-text">&copy; <span id="current-year"></span> Crônicas Estelares. Todos os sistemas operacionais.</p>
+        </div>
+    </footer>
+    
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#top" class="back-to-top" title="Voltar ao topo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- CÓDIGO EXISTENTE ---
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const applyStoredTheme = () => {
+                const storedTheme = localStorage.getItem('theme');
+                if (storedTheme === 'light') {
+                    body.classList.add('light-theme');
+                } else {
+                    body.classList.remove('light-theme');
+                }
+            };
+
+            applyStoredTheme();
+
+            themeToggleButton.addEventListener('click', () => {
+                body.classList.toggle('light-theme');
+                const newTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+                localStorage.setItem('theme', newTheme);
+            });
+            
+            // --- ANIMAÇÃO DOS CARDS AO ROLAR ---
+            const cards = document.querySelectorAll('.card');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // --- BOTÃO VOLTAR AO TOPO ---
+            const backToTopButton = document.querySelector(".back-to-top");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add("show");
+                } else {
+                    backToTopButton.classList.remove("show");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
