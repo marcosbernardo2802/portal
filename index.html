@@ -117,7 +117,13 @@
 
         /* Card hover shadow */
         .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-primary);
             box-shadow: 0 0 25px var(--color-shadow);
+        }
+        
+        .card.is-visible:hover {
+            transform: translateY(-10px);
         }
 
         /* Footer link text color for light theme */
@@ -125,6 +131,69 @@
         body.light-theme .donation-link,
         body.light-theme .email-link {
             color: #000000; /* Pure black for light theme */
+        }
+
+        /* ---- SEÇÃO DE PROJETOS ---- */
+        main {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        
+        main h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        /* Adjusted grid to fit 4 cards per row on larger screens */
+        .grid-apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax for smaller cards */
+            gap: 2rem; /* Slightly reduced gap for better fit */
+        }
+
+        /* Card image size adjustment for smaller cards */
+        .card img {
+            width: 100%;
+            height: 150px; /* Reduced height to fit smaller cards */
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+        .card-content h3 {
+            font-size: 1.25rem; /* Adjusted font size for smaller cards */
+        }
+        .card-content p {
+            font-size: 0.9rem; /* Adjusted font size for smaller cards */
+        }
+
+        /* RESPONSIVIDADE DO BANNER (Copiada do portal) */
+        @media (max-width: 768px) {
+            .banner-content h1 { font-size: 2.8rem; }
+            .banner-content p { font-size: 1.1rem; }
+            main h2 { font-size: 2rem; }
+            .grid-apps {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for 2 columns on tablets */
+                gap: 1.5rem;
+            }
+            .card img {
+                height: 180px; /* Slightly larger image height for tablets */
+            }
+        }
+        @media (max-width: 480px) {
+            .grid-apps {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ensure single column on small mobiles */
+                gap: 1rem;
+            }
+            .card img {
+                height: 160px; /* Adjust image height for small mobiles */
+            }
         }
     </style>
 </head>
@@ -147,11 +216,11 @@
     <!-- Main Content Section - Tools Arsenal -->
     <main class="container max-w-screen-xl mx-auto px-4 py-16" id="projetos">
         <h2 class="text-center text-3xl md:text-4xl font-bold mb-12 text-color-primary-dark uppercase tracking-wider transition-colors duration-300 ease-in-out">Arsenal de Ferramentas</h2>
-        <div class="grid-apps grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="grid-apps">
 
             <!-- Divisor de Texto Card -->
             <a href="https://divisordetexto.vercel.app" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
-                <img src="https://placehold.co/600x400/1a2b4a/00f2fe?text=Divisor+de+Texto" alt="Imagem do aplicativo Divisor de Texto" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Divisor+de+Texto';">
+                <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/divisor-de-texto.png" alt="Imagem do aplicativo Divisor de Texto" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Divisor+de+Texto';">
                 <div class="card-content p-6 flex flex-col flex-grow">
                     <h3 class="text-color-primary-dark text-2xl font-semibold mb-3">
                         Divisor de Texto
@@ -162,7 +231,7 @@
 
             <!-- Conversor de Roteiro para .SRT Card -->
             <a href="https://conversor-srt-topaz.vercel.app/" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
-                <img src="https://placehold.co/600x400/1a2b4a/00f2fe?text=Conversor+SRT" alt="Ícone representando conversor de roteiro para SRT" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Conversor+SRT';">
+                <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/roteiro-srt.png" alt="Ícone representando conversor de roteiro para SRT" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Conversor+SRT';">
                 <div class="card-content p-6 flex flex-col flex-grow">
                     <h3 class="text-color-primary-dark text-2xl font-semibold mb-3">
                         Conversor de Roteiro para .SRT
@@ -171,9 +240,20 @@
                 </div>
             </a>
 
-            <!-- Variador de Gmail Card -->
+            <!-- Remover Silêncio do Áudio Card (Moved from 4th to 3rd position) -->
+            <a href="https://removedor-silencio.vercel.app/" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
+                <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/revovedor-silencio.png" alt="Ícone representando um gráfico de áudio" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Remover+Sil%C3%AAncio';">
+                <div class="card-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-color-primary-dark text-2xl font-semibold mb-3">
+                        Remover Silêncio do Áudio
+                    </h3>
+                    <p class="text-color-text-dark text-base flex-grow">Remova automaticamente espaços vazios e silêncios indesejados de seus arquivos de áudio para edições mais limpas.</p>
+                </div>
+            </a>
+
+            <!-- Variador de Gmail Card (Moved from 3rd to 4th position) -->
             <a href="https://variador-de-gmail.vercel.app/" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
-                <img src="https://placehold.co/600x400/1a2b4a/00f2fe?text=Variador+de+Gmail" alt="Ícone representando variações de e-mail" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Variador+de+Gmail';">
+                <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/variador-gmail.png" alt="Ícone representando variações de e-mail" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Variador+de+Gmail';">
                 <div class="card-content p-6 flex flex-col flex-grow">
                     <h3 class="text-color-primary-dark text-2xl font-semibold mb-3">
                         Variador de Gmail
