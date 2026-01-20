@@ -75,7 +75,7 @@
         }
         /* Dynamic fill for SVGs based on theme */
         .theme-switcher svg, .back-to-top svg,
-        .donation-link svg, .email-link svg { /* Removed .card-content h3 svg from here */
+        .donation-link svg, .email-link svg, .rules-link svg { /* Added .rules-link svg */
             fill: var(--color-primary); /* Use the custom CSS variable */
             transition: fill 0.3s; /* Added transition for smooth color change */
         }
@@ -129,7 +129,8 @@
         /* Footer link text color for light theme */
         body.light-theme .footer-link,
         body.light-theme .donation-link,
-        body.light-theme .email-link {
+        body.light-theme .email-link,
+        body.light-theme .rules-link { /* Added .rules-link */
             color: #000000; /* Pure black for light theme */
         }
 
@@ -240,7 +241,7 @@
                 </div>
             </a>
 
-            <!-- Remover Silêncio do Áudio Card (Moved from 4th to 3rd position) -->
+            <!-- Remover Silêncio do Áudio Card -->
             <a href="https://removedor-silencio.vercel.app/" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
                 <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/revovedor-silencio.png" alt="Ícone representando um gráfico de áudio" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-color-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Remover+Sil%C3%AAncio';">
                 <div class="card-content p-6 flex flex-col flex-grow">
@@ -251,7 +252,7 @@
                 </div>
             </a>
 
-            <!-- Variador de Gmail Card (Moved from 3rd to 4th position) -->
+            <!-- Variador de Gmail Card -->
             <a href="https://variador-de-gmail.vercel.app/" target="_blank" rel="noopener noreferrer" class="card block bg-color-card-bg-dark border border-color-card-border-dark rounded-lg overflow-hidden shadow-lg shadow-black/20 opacity-0 transform translate-y-5 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-color-primary-dark hover:shadow-xl">
                 <img src="https://raw.githubusercontent.com/marcosbernardo2802/portal/main/images/variador-gmail.png" alt="Ícone representando variações de e-mail" class="w-full h-52 object-cover opacity-90 transition-opacity duration-300 ease-in-out border-b border-card-border-dark" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a2b4a/00f2fe?text=Variador+de+Gmail';">
                 <div class="card-content p-6 flex flex-col flex-grow">
@@ -285,6 +286,11 @@
                 <a href="mailto:cronicasestelares.oficial@gmail.com" target="_blank" rel="noopener noreferrer" class="email-link text-color-text-dark font-bold inline-flex items-center gap-2 transition-colors duration-300 ease-in-out hover:text-color-primary-dark hover:shadow-sm">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     <span>cronicasestelares.oficial@gmail.com</span>
+                </a>
+
+                <a href="https://regras-cronicas-estelares.vercel.app" target="_blank" rel="noopener noreferrer" class="rules-link text-color-text-dark font-bold inline-flex items-center gap-2 transition-colors duration-300 ease-in-out hover:text-color-primary-dark hover:shadow-sm">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    <span>Seja Protagonista</span>
                 </a>
             </div>
 
