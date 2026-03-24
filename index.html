@@ -32,6 +32,7 @@
                         lightText: '#1f1f1f',
                         lightTextMuted: '#444746',
                         accent: '#00f2fe',
+                        apiAccent: '#a855f7',
                     }
                 }
             }
@@ -134,6 +135,12 @@
             color: transparent;
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.4));
         }
+
+        /* Ajuste para Modo Claro: Azul mais escuro e legível */
+        .light-theme .title-gradient {
+            background-image: linear-gradient(to right, #1e40af, #2563eb);
+            filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.1));
+        }
         
         /* Animação de entrada */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -175,11 +182,25 @@
                 </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto px-3 space-y-6">
+            <div class="flex-1 overflow-y-auto px-3 space-y-4">
                 <div>
-                    <p class="px-3 text-[10px] font-bold text-muted uppercase tracking-widest mb-2">Módulos Ativos</p>
-                    <nav class="space-y-1" id="tool-list"></nav>
+                    <p class="px-3 text-[10px] font-bold text-apiAccent uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Módulos de IA
+                    </p>
+                    <nav class="space-y-1" id="tool-list-api"></nav>
                 </div>
+
+                <!-- LINHA DIVISÓRIA REFORÇADA (80% OPACIDADE) -->
+                <div class="mx-3 border-t border-custom opacity-80"></div>
+
+                <div>
+                    <p class="px-3 text-[10px] font-bold text-muted uppercase tracking-widest mb-2">Módulos Padrão</p>
+                    <nav class="space-y-1" id="tool-list-standard"></nav>
+                </div>
+
+                <!-- LINHA DIVISÓRIA REFORÇADA (80% OPACIDADE) -->
+                <div class="mx-3 border-t border-custom opacity-80"></div>
 
                 <div>
                     <p class="px-3 text-[10px] font-bold text-muted uppercase tracking-widest mb-2">Comunidade</p>
@@ -188,17 +209,21 @@
                             <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                             YouTube
                         </a>
-                        <a href="https://page-doacao.vercel.app/" onclick="handleToolClick(event, 'apoio')" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
+                        <a href="https://www.youtube.com/channel/UCSI73DwupK9w8SLPESX1DNw/join" target="_blank" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all" title="Torne-se um Oficial Graduado (Tenente/Comandante)">
+                            <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                            Seja Membro
+                        </a>
+                        <a onclick="handleToolClick(event, 'apoio')" class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
                             <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                             Apoio ao Projeto
                         </a>
-                        <a href="https://regras-cronicas-estelares.vercel.app" onclick="handleToolClick(event, 'protagonista')" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
+                        <a onclick="handleToolClick(event, 'protagonista')" class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
                             <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                             Seja um Protagonista
                         </a>
-                        <a href="mailto:cronicasestelares.oficial@gmail.com" target="_blank" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
+                        <a href="mailto:cronicasestelares.oficial@gmail.com" target="_blank" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all" title="Chave PIX e Contato Geral">
                             <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            Contato
+                            Contato / Pix
                         </a>
                     </nav>
                 </div>
@@ -214,21 +239,22 @@
             <div class="flex-1 overflow-y-auto pb-20 pt-6 px-4 scroll-smooth" id="scroll-area">
                 <!-- Content Area sem h-full para permitir crescimento infinito -->
                 <div class="max-w-3xl mx-auto w-full transition-all duration-500" id="content-area"></div>
-                <p class="text-center text-[10px] text-muted mt-10 mb-4">Crônicas Estelares - Criado para a Comunidade de Criadores de Canais Dark.</p>
+                <p id="footer" class="text-center text-[10px] text-muted mt-10 mb-4">Crônicas Estelares - Criado para a Comunidade de Criadores de Canais Dark.</p>
             </div>
         </main>
     </div>
 
     <script>
         const tools = [
-            { id: 'divisor', title: 'Divisor de Texto', icon: 'M4 6h16M4 12h16m-7 6h7', url: 'https://divisordetexto.vercel.app', desc: 'Fragmentação de roteiros para IA.' },
-            { id: 'srt', title: 'Conversor SRT', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', url: 'https://conversor-srt-topaz.vercel.app/', desc: 'Sincronização de legendas precisa.' },
-            { id: 'silencio', title: 'Remover Silêncio', icon: 'M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z', url: 'https://removedor-silencio.vercel.app/', desc: 'Edição dinâmica de áudio automatizada.' },
-            { id: 'gmail', title: 'Variador de Gmail', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', url: 'https://variador-de-gmail.vercel.app/', desc: 'Múltiplas variações para o seu e-mail base.' }
+            { id: 'divisor', category: 'standard', title: 'Divisor de Texto', icon: 'M4 6h16M4 12h16m-7 6h7', url: 'https://divisordetexto.vercel.app', desc: 'Divida textos longos em blocos menores para narração TTS.' },
+            { id: 'divisor-ia', category: 'api', title: 'Divisor Inteligente (IA)', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z', url: 'https://divisor-inteligente.vercel.app/', desc: 'Divisão de roteiros, narração TTS, análise de personagens e SEO estratégico com a IA do Gemini.' },
+            { id: 'srt', category: 'standard', title: 'Conversor SRT', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', url: 'https://conversor-srt-topaz.vercel.app/', desc: 'Transforme roteiros em legendas SRT sincronizadas, otimizadas para narração no CapCut.' },
+            { id: 'silencio', category: 'standard', title: 'Remover Silêncio', icon: 'M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z', url: 'https://removedor-silencio.vercel.app/', desc: 'Elimine vácuos e silêncios de áudios para uma edição mais dinâmica.' },
+            { id: 'gmail', category: 'standard', title: 'Variador de Gmail', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', url: 'https://variador-de-gmail.vercel.app/', desc: 'Gere centenas de endereços alternativos a partir de um único e-mail.' }
         ];
 
         const extraPages = {
-            'apoio': { title: 'Apoio ao Projeto', icon: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z', url: 'https://page-doacao.vercel.app/', desc: 'Ajude-nos a evoluir a tecnologia.' },
+            'apoio': { title: 'Apoio ao Projeto', icon: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z', url: 'https://page-doacao.vercel.app/', desc: 'Ajude-nos a evoluir a tecnologia. Apoio via PIX para o novo PC.' },
             'protagonista': { title: 'Seja um Protagonista', icon: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z', url: 'https://regras-cronicas-estelares.vercel.app', desc: 'Participa nas histórias do canal.' }
         };
 
@@ -261,39 +287,84 @@
         }
 
         function handleToolClick(event, id) {
-            if (event.ctrlKey || event.button === 1) return;
             event.preventDefault();
             renderTool(id);
             if(window.innerWidth < 768) toggleSidebar();
         }
 
-        const list = document.getElementById('tool-list');
+        const listStandard = document.getElementById('tool-list-standard');
+        const listApi = document.getElementById('tool-list-api');
+        
         tools.forEach(t => {
             const a = document.createElement('a');
-            a.href = t.url;
-            a.className = 'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all';
-            a.innerHTML = `<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg> <span class="truncate">${t.title}</span>`;
+            a.className = 'cursor-pointer w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all';
+            
+            if (t.category === 'api') {
+                a.innerHTML = `<svg class="w-4 h-4 flex-shrink-0 text-apiAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg> <span class="truncate">${t.title}</span>`;
+                listApi.appendChild(a);
+            } else {
+                a.innerHTML = `<svg class="w-4 h-4 flex-shrink-0 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg> <span class="truncate">${t.title}</span>`;
+                listStandard.appendChild(a);
+            }
+            
             a.onclick = (e) => handleToolClick(e, t.id);
-            list.appendChild(a);
         });
 
         function renderHome() {
+            const scrollArea = document.getElementById('scroll-area');
+            scrollArea.className = 'flex-1 overflow-y-auto pb-20 pt-6 px-4 scroll-smooth';
+            
+            const footer = document.getElementById('footer');
+            if(footer) footer.style.display = 'block';
+
+            const apiTools = tools.filter(t => t.category === 'api');
+            const standardTools = tools.filter(t => t.category === 'standard');
+
             const ca = document.getElementById('content-area');
             ca.className = 'max-w-3xl mx-auto w-full transition-all duration-300';
             ca.innerHTML = `
                 <div class="mt-10 animate-fade-in text-center md:text-left">
                     <h1 class="text-2xl md:text-3xl font-bold title-gradient mb-4">Arsenal De Ferramentas.</h1>
                     <p class="text-muted mb-10 max-w-xl">Bem-vindo à Nave-Mãe Crônicas Estelares.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        ${tools.map(t => `
-                            <a href="${t.url}" onclick="handleToolClick(event, '${t.id}')" class="bg-surface hover-surface border border-custom p-6 rounded-2xl group transition-all duration-300 hover:-translate-y-1">
-                                <div class="bg-[var(--bg-color)] w-12 h-12 rounded-full flex items-center justify-center mb-4 group-hover:text-accent transition-colors">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-lg mb-2">${t.title}</h3>
-                                <p class="text-xs text-muted leading-relaxed">${t.desc}</p>
-                            </a>
-                        `).join('')}
+                    
+                    <!-- Categoria: IA / API -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-bold flex items-center gap-2 mb-4 text-apiAccent">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Módulos de IA
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            ${apiTools.map(t => `
+                                <a onclick="handleToolClick(event, '${t.id}')" class="cursor-pointer bg-surface hover-surface border border-apiAccent/40 shadow-[0_0_15px_rgba(168,85,247,0.15)] p-6 rounded-2xl group transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-apiAccent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="bg-[var(--bg-color)] w-12 h-12 rounded-full flex items-center justify-center mb-4 text-apiAccent transition-colors relative z-10">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 relative z-10">${t.title}</h3>
+                                    <p class="text-xs text-muted leading-relaxed relative z-10">${t.desc}</p>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Categoria: Padrão -->
+                    <div>
+                        <h2 class="text-lg font-bold flex items-center gap-2 mb-4 text-[var(--text-main)]">
+                            <svg class="w-5 h-5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Módulos Padrão
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            ${standardTools.map(t => `
+                                <a onclick="handleToolClick(event, '${t.id}')" class="cursor-pointer bg-surface hover-surface border border-accent/40 shadow-[0_0_15px_rgba(0,242,254,0.15)] p-6 rounded-2xl group transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="bg-[var(--bg-color)] w-12 h-12 rounded-full flex items-center justify-center mb-4 text-accent transition-colors relative z-10">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg>
+                                    </div>
+                                    <h3 class="font-bold text-lg mb-2 relative z-10">${t.title}</h3>
+                                    <p class="text-xs text-muted leading-relaxed relative z-10">${t.desc}</p>
+                                </a>
+                            `).join('')}
+                        </div>
                     </div>
                 </div>
             `;
@@ -301,28 +372,49 @@
 
         function renderTool(id) {
             const t = tools.find(x => x.id === id) || extraPages[id];
+            
+            const isApi = t.category === 'api';
+            const colorClass = isApi ? 'text-apiAccent' : 'text-accent';
+            const bgClass = isApi ? 'bg-apiAccent/10' : 'bg-accent/10';
+            
+            const scrollArea = document.getElementById('scroll-area');
+            
+            if (isApi) {
+                scrollArea.className = 'flex-1 p-0 relative overflow-hidden flex flex-col';
+            } else {
+                scrollArea.className = 'flex-1 overflow-y-auto p-0 scroll-smooth relative';
+            }
+            
+            const footer = document.getElementById('footer');
+            if(footer) footer.style.display = 'none';
+
             const ca = document.getElementById('content-area');
-            // Removemos h-full do container interno para permitir expansão infinita
-            ca.className = 'max-w-full md:px-4 mx-auto w-full transition-all';
+            ca.className = isApi ? 'w-full flex-1 flex flex-col' : 'w-full transition-all flex flex-col';
+
+            const iframeClass = isApi 
+                ? 'w-full flex-1 border-none animate-fade-in block' 
+                : 'w-full border-none animate-fade-in min-h-[calc(100vh-6rem)] block';
+
             ca.innerHTML = `
-                <div class="flex flex-col animate-fade-in">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg>
-                            </div>
-                            <h2 class="text-xl font-bold">${t.title}</h2>
+                <div class="w-full px-4 py-1.5 border-b border-custom bg-surface flex items-center justify-between animate-fade-in sticky top-0 z-20 shadow-sm shrink-0">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-6 h-6 rounded-full ${bgClass} flex items-center justify-center ${colorClass}">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${t.icon}"></path></svg>
                         </div>
-                        <a href="${t.url}" target="_blank" class="p-2 rounded-full hover-surface text-muted" title="Abrir em Nova Aba">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
+                        <h2 class="text-xs md:text-sm font-bold tracking-wide">${t.title}</h2>
                     </div>
-                    <div class="bg-surface border border-custom rounded-3xl shadow-2xl relative">
-                        <iframe id="tool-iframe" src="${t.url}" onload="syncIframeTheme(this)" class="w-full min-h-[75vh] border-none" scrolling="no"></iframe>
-                    </div>
+                    ${!isApi ? `
+                    <a href="${t.url}" target="_blank" class="p-1.5 rounded-full hover-surface text-muted transition-colors" title="Abrir em Nova Aba">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                    ` : ''}
                 </div>
+                <iframe id="tool-iframe" src="${t.url}" onload="syncIframeTheme(this)" class="${iframeClass}" allow="clipboard-read; clipboard-write" scrolling="${isApi ? 'auto' : 'no'}"></iframe>
             `;
-            document.getElementById('scroll-area').scrollTo(0,0);
+            
+            if (!isApi) {
+                document.getElementById('scroll-area').scrollTo(0,0);
+            }
         }
 
         function syncIframeTheme(f) {
@@ -337,13 +429,15 @@
 
         function broadcastTheme() { document.querySelectorAll('iframe').forEach(syncIframeTheme); }
 
-        // AJUSTE DE ALTURA DINÂMICO SEM LIMITAÇÃO
+        let lastHeight = 0;
         window.addEventListener('message', (e) => {
             if (e.data?.action === 'resizeIframe' && e.data.height) {
                 const f = document.getElementById('tool-iframe');
-                if (f) {
-                    // Define a altura exata enviada pelo Camaleão v9.0
-                    f.style.height = e.data.height + 'px';
+                if (f && f.getAttribute('scrolling') === 'no') {
+                    if (Math.abs(lastHeight - e.data.height) > 20) {
+                        f.style.height = e.data.height + 'px';
+                        lastHeight = e.data.height;
+                    }
                 }
             }
         });
