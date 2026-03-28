@@ -221,6 +221,12 @@
                             <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                             Seja um Protagonista
                         </a>
+                        <!-- NOVA PÁGINA ADICIONADA: ENVIAR HISTÓRIA -->
+                        <a onclick="handleToolClick(event, 'enviar-historia')" class="cursor-pointer flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all">
+                            <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                            Enviar História
+                        </a>
+                        <!-- ======================================= -->
                         <a href="mailto:cronicasestelares.oficial@gmail.com" target="_blank" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover-surface text-sm text-muted hover:text-[var(--text-main)] transition-all" title="Chave PIX e Contato Geral">
                             <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             Contato / Pix
@@ -256,7 +262,9 @@
 
         const extraPages = {
             'apoio': { title: 'Apoio ao Projeto', icon: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z', url: 'https://page-doacao.vercel.app/', desc: 'Ajude-nos a evoluir a tecnologia. Apoio via PIX para o novo PC.' },
-            'protagonista': { title: 'Seja um Protagonista', icon: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z', url: 'https://regras-cronicas-estelares.vercel.app', desc: 'Participa nas histórias do canal.' }
+            'protagonista': { title: 'Seja um Protagonista', icon: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z', url: 'https://regras-cronicas-estelares.vercel.app', desc: 'Participa nas histórias do canal.' },
+            // ADICIONADO: Nova página de envio de histórias vinculada ao menu lateral
+            'enviar-historia': { title: 'Enviar História', icon: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z', url: 'https://formulario-de-historias.vercel.app/', desc: 'Envie sua história para ser narrada no canal.' }
         };
 
         const body = document.body;
